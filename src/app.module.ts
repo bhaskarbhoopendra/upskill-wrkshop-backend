@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { StudentSchema } from './students/schema/students.schema';
 import { StudentController } from './students/students.controller';
 import { StudentService } from './students/students.service';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { StudentService } from './students/students.service';
       }),
       inject: [ConfigService],
     }),
-    MongooseModule.forFeature([{ name: 'Student', schema: StudentSchema }])
+    MongooseModule.forFeature([{ name: 'Student', schema: StudentSchema }]),
+    MailModule
   ],
   controllers: [AppController, StudentController],
   providers: [AppService, StudentService],
