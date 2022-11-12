@@ -3,6 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { StudentSchema } from './students/schema/students.schema';
+import { StudentController } from './students/students.controller';
+import { StudentService } from './students/students.service';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -16,8 +20,10 @@ import { AppService } from './app.service';
       }),
       inject: [ConfigService],
     }),
+    MongooseModule.forFeature([{ name: 'Student', schema: StudentSchema }]),
+    MailModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, StudentController],
+  providers: [AppService, StudentService],
 })
 export class AppModule {}
