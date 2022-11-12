@@ -1,34 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { StudentsService } from './students.service';
+import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
+import { StudentService } from './students.service';
 
-@Controller('students')
-export class StudentsController {
-  constructor(private readonly studentsService: StudentsService) {}
-
-  @Post()
-  create(@Body() createStudentDto: CreateStudentDto) {
-    return this.studentsService.create(createStudentDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.studentsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.studentsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(+id, updateStudentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.studentsService.remove(+id);
-  }
+@Controller('student')
+export class StudentController {
+   constructor(private readonly studentService: StudentService) { }
+@Post()
+   async createStudent(@Res() response, @Body() createStudentDto: CreateStudentDto) {
+  try {
+    const newStudent = await this.studentService.createStudent(createStudentDto);
+    return response.status(HttpStatus.CREATED).json({
+    message: 'Student has been created successfully',
+    newStudent,});
+ } catch (err) {
+    return response.status(HttpStatus.BAD_REQUEST).json({
+    statusCode: 400,
+    message: 'Error: Student not created!',
+    error: 'Bad Request'
+ })
 }
+   }
+  }
