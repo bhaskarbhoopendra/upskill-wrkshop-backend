@@ -5,12 +5,12 @@ export type StudentDocument = Student & Document;
 @Schema()
 export class Student {
   @Prop()
-  name: string;
+  fullName: string;
 
   @Prop()
   email: string;
 
   @Prop()
-  phone: number;
+  phoneNumber: number;
 }
 export const StudentSchema = SchemaFactory.createForClass(Student);
