@@ -1,16 +1,21 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
+import { MailService } from 'src/mail/mail.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { StudentService } from './students.service';
 
 @Controller('student')
 export class StudentController {
-   constructor(private readonly studentService: StudentService) { }
+   constructor(private readonly studentService: StudentService,
+    private mailService: MailService) { }
 
 @Post()
    async createStudent(@Res() response, @Body() createStudentDto: CreateStudentDto) {
   try {
     const newStudent = await this.studentService.createStudent(createStudentDto);
+    if(newStudent){
+      await this.mailService.sendMail(newStudent.email, newStudent.fullName)
+    }
     return response.status(HttpStatus.CREATED).json({
     message: 'Student has been created successfully',
     newStudent,});
@@ -53,9 +58,9 @@ async getStudent(@Res() response, @Param('id') studentId: string) {
     const existingStudent = await
     this.studentService.getStudent(studentId);
     return response.status(HttpStatus.OK).json({
-    message: 'Student found successfully',existingStudent,});
- } catch (err) {
-   return response.status(err.status).json(err.response);
+    message: 'Student found successfully',existingStudent,})
+ } catch (err) { 
+   return response.status(err.status).json(err.response)
  }
 }
 
@@ -63,7 +68,7 @@ async getStudent(@Res() response, @Param('id') studentId: string) {
 async deleteStudent(@Res() response, @Param('id') studentId: string)
 {
   try {
-    const deletedStudent = await this.studentService.deleteStudent(studentId);
+    const deletedStudent = await this.studentService.deleteStudent(studentId)
     return response.status(HttpStatus.OK).json({
     message: 'Student deleted successfully',
     deletedStudent});
