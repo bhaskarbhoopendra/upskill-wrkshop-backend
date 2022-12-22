@@ -1,0 +1,15 @@
+
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [NestFactory] Starting Nest application...
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [InstanceLoader] MongooseModule dependencies initialized +26ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [InstanceLoader] ConfigHostModule dependencies initialized +0ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [InstanceLoader] FilesModule dependencies initialized +0ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [InstanceLoader] ConfigModule dependencies initialized +1ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [InstanceLoader] MongooseCoreModule dependencies initialized +584ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [RouterExplorer] Mapped {/student/:id, GET} route +0ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [RouterExplorer] Mapped {/student/:id, DELETE} route +1ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [RoutesResolver] FilesController {/file}: +0ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [RouterExplorer] Mapped {/file, POST} route +1ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [RoutesResolver] FilesController {/file}: +0ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [RouterExplorer] Mapped {/file, POST} route +1ms
+[Nest] 21680  - 18/12/2022, 11:55:57 am     LOG [NestApplication] Nest application successfully started +2ms

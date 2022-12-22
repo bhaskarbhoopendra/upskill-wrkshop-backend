@@ -6,6 +6,10 @@ import { AppService } from './app.service';
 import { StudentSchema } from './students/schema/students.schema';
 import { StudentController } from './students/students.controller';
 import { StudentService } from './students/students.service';
+import { FilesModule } from './files/files.module';
+import { FilesController } from './files/files.controller';
+import { FilesService } from './files/files.service';
+import { MulterModule } from '@nestjs/platform-express/multer';
 
 @Module({
   imports: [
@@ -19,9 +23,11 @@ import { StudentService } from './students/students.service';
       }),
       inject: [ConfigService],
     }),
-    MongooseModule.forFeature([{ name: 'Student', schema: StudentSchema }])
+    MongooseModule.forFeature([{ name: 'Student', schema: StudentSchema }]),
+    FilesModule,
+    MulterModule.register({ dest: './uploads'})
   ],
-  controllers: [AppController, StudentController],
-  providers: [AppService, StudentService],
+  controllers: [AppController, StudentController, FilesController],
+  providers: [AppService, StudentService, FilesService],
 })
 export class AppModule {}
