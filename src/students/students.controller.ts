@@ -11,10 +11,12 @@ export class StudentController {
    async createStudent(@Res() response, @Body() createStudentDto: CreateStudentDto) {
   try {
     const newStudent = await this.studentService.createStudent(createStudentDto);
+    console.log({newStudent})
     return response.status(HttpStatus.CREATED).json({
     message: 'Student has been created successfully',
     newStudent,});
  } catch (err) {
+    console.log({err})
     return response.status(HttpStatus.BAD_REQUEST).json({
     statusCode: 400,
     message: 'Error: Student not created!',
