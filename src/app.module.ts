@@ -10,6 +10,7 @@ import { FilesModule } from './files/files.module';
 import { FilesController } from './files/files.controller';
 import { FilesService } from './files/files.service';
 import { MulterModule } from '@nestjs/platform-express/multer';
+import { DiskStorage } from 'utils/diskStorage';
 
 @Module({
   imports: [
@@ -28,6 +29,6 @@ import { MulterModule } from '@nestjs/platform-express/multer';
     MulterModule.register({ dest: './uploads'})
   ],
   controllers: [AppController, StudentController, FilesController],
-  providers: [AppService, StudentService, FilesService],
+  providers: [AppService, StudentService, FilesService, DiskStorage],
 })
 export class AppModule {}
